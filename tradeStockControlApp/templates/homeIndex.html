@@ -1,0 +1,439 @@
+{% load staticfiles %}
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Aangshop</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="{% static '/assets/css/main.css' %}" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	</head>
+	<style>
+	table, th, td {
+		border: 1px solid black;
+		
+	}
+	table {
+		margin-top: 10px;
+	}
+	th {
+		font-weight: bold;
+	}
+	tr:nth-child(even){background-color: #f2f2f2}
+	</style>
+	<body>
+        <meta name="isSuperUser" content="{{ request.user.is_superuser }}"/>
+        
+		<!-- Header -->
+			<div id="header">
+
+				<div class="top">
+
+					<!-- Logo -->
+						<div id="logo">
+							<span class="image avatar48"><img src="{% static 'images/avatar.jpg' %}" alt="" /></span>
+							<h1 id="title">{{ request.user.get_full_name }}</h1>
+							<p>Aangshop Sales Executive</p>
+						</div>
+
+					<!-- Nav -->
+						<nav id="nav">
+							<ul>
+								<!--<li><a href="#top" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Intro</span></a></li>-->
+								<li><a href="#newStock" id="newStock-link" class="skel-layers-ignoreHref"><span class="icon fa-cart-arrow-down">New Stock</span></a></li>
+								<li><a href="#stockQty" id="stockQty-link" class="skel-layers-ignoreHref"><span class="icon fa-table">Stock Quantity</span></a></li>
+								<li><a href="#editStock" id="editStock-link" class="skel-layers-ignoreHref"><span class="icon fa-edit">Edit</span></a></li>
+								<li><a href="#inStoreOrderHist" id="inStoreOrderHist-link" class="skel-layers-ignoreHref"><span class="icon  fa-history">In Store Order Hist</span></a></li>
+                                {% if request.user.is_superuser %}
+                                <li><a href="#reportService" id="reportService-link" class="skel-layers-ignoreHref"><span class="icon fa-dollar">Report</span></a></li>
+                                {% endif %}
+                                <li><a href="/admin/logout/" id="logout-link" class="skel-layers-ignoreHref"><span class="icon fa-sign-out">Logout</span></a></li>
+							</ul>
+						</nav>
+
+				</div>
+
+				<div class="bottom">
+
+					<!-- Social Icons -->
+						<ul class="icons">
+							<li><a href="https://www.instagram.com/aangshop/" target="_blank" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="https://www.facebook.com/aaangshop/" target="_blank" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+							<li><a href="https://www.aangshop.com/" target="_blank" class="icon fa-window-maximize"><span class="label">Website</span></a></li>
+						</ul>
+
+				</div>
+
+			</div>
+
+		<!-- Main -->
+			<div id="main">
+
+				<!-- Intro -->
+                <!--
+					<section id="top" class="one dark cover">
+						<div class="container">
+
+							
+							<header>
+								<h2 class="alt">Hi! I'm <strong>Prologue</strong>, a <a href="http://html5up.net/license">free</a> responsive<br />
+								site template designed by <a href="http://html5up.net">HTML5 UP</a>.</h2>
+								<p>Ligula scelerisque justo sem accumsan diam quis<br />
+								vitae natoque dictum sollicitudin elementum.</p>
+							</header>
+
+							<footer>
+								<a href="#portfolio" class="button scrolly">Magna Aliquam</a>
+							</footer>
+							
+							
+						</div>
+					</section>
+                -->
+				
+				<!-- New Stock -->
+					<section id="newStock" class="two">
+						<div class="container">
+
+							<header>
+								<h2>New Stock</h2>
+							</header>
+							
+							</br>
+
+							<!--<form method="post" action="#">-->
+								<div class="row">
+									
+									<div class="3u 12u$(mobile)"><label>Item No:</label></div>
+									<div class="3u$ 12u$(mobile)"><input id="newStockItemNo" type="text" name="itemNo"/></div>
+									<div class="3u 12u$(mobile)"><label>Description:</label></div>
+									<div class="3u$ 12u$(mobile)"><input id="newStockDesc" type="text" name="description"/></div>
+									<div class="3u 12u$(mobile)"><label>Color:</label></div>
+									<!--<div class="3u$ 12u$(mobile)"><input id="newStockColor" type="color" name="color" style="height:40px; width:93%"></div>-->
+                                    <div class="3u$ 12u$(mobile)"><input id="newStockColor" type="text" name="color" style="height:40px; width:93%"></div>
+									<div class="3u 12u$(mobile)"><label>Size:</label></div>
+									<div class="3u$ 12u$(mobile)">
+										<select id="newStockSize" name="size" style="width:93%;">
+											<option value="NIL" selected>NIL</option>
+											<option value="XL">XL</option>
+											<option value="L">L</option>
+											<option value="M">M</option>
+											<option value="S">S</option>
+											<option value="XS">XS</option>
+										</select>
+									</div>
+									<div class="3u 12u$(mobile)"><label>Type:</label></div>
+									<div class="3u$ 12u$(mobile)">
+										<select id="newStockType" name="type" style="width:93%;">
+											<option value="TOPS" selected>Tops</option>
+											<option value="TROUSERS">Trousers</option>
+											<option value="DRESSES">Dresses</option>
+											<option value="SKIRTS">Skirts</option>
+											<option value="OUTERWEAR">Outerwear</option>
+											<option value="ACCERSSORIES">Accerssories</option>
+										</select>
+									</div>
+									<div class="3u 12u$(mobile)"><label>Price & Cost:</label></div>
+									<div class="3u 12u$(mobile)"><input id="newStockPrice" onkeypress="return event.charCode >= 48" type="number" min="0" name="price" placeholder="$"/></div>
+                                    <div class="3u$ 12u$(mobile)"><input id="newStockCost" type="number" min="0" name="cost" placeholder="$"/></div>
+									<div class="3u 12u$(mobile)"><label>Quantities:</label></div>
+									<div class="3u$ 12u$(mobile)"><input id="newStockQty" onkeypress="return event.charCode >= 48" type="number" min="0" name="qty"/></div>
+									
+									<div class="3u$ 12u$(mobile)">
+										<input id="newStockBtn" type="submit" value="Add"/>
+									</div>
+									
+								</div>
+							
+						</div>
+					</section>
+	
+				<!-- Stock Quantity -->
+					<section id="stockQty" class="three">
+						<div class="container">
+
+							<header>
+								<h2>Stock Quantity</h2>
+							</header>
+							
+							</br>
+							
+                            <div class="row" height="500px">
+                                <div class="2u 12u$(mobile)"><label>Item No:</label></div>
+                                <div class="3u 12u$(mobile)">
+                                    <input id="checkStockItemNo" type="text" name="checkItemNo" placeholder="itemNo" />
+                                </div>
+                                <div class="2u 12u$(mobile)"><label>Description:</label></div>
+                                <div class="3u 12u$(mobile)">
+                                    <input id="checkStockDesc" type="text" name="checkDesc" placeholder="Description" />
+                                </div>
+                                <div class="2u$ 12u$(mobile)">
+                                    <input id="checkStockBtn" type="submit" value="Check" />
+                                </div>                                
+                                
+                                
+                                
+                                <div id="stockTableDiv" class="12u$ 12u$(mobile)" style="height:600px; overflow-x:auto; overflow-y: scroll;">
+                                    <table id="stockTable">
+                                        <tr>
+                                            <th>Stock ID*</th>
+                                            <th>Item No</th>
+                                            <th>Description</th>
+                                            <th>Type</th>
+                                            <th>Color</th>
+                                            <th>Size</th>
+                                            <th>Qty*</th>
+                                            <th>Price</th>
+                                            {% if request.user.is_superuser %}
+                                            <th>Cost</th>
+                                            {% endif %}
+                                        </tr>
+                                        {% for stock in stockTableResult%}
+                                        <tr>
+                                            <td onclick='stockTableTdClick(event, this.parentNode);'> {{ stock.stock_id }} </td>
+                                            <td> {{ stock.item_no }} </td>
+                                            <td> {{ stock.description }} </td>
+                                            <td> {{ stock.stock_type }} </td>
+                                            <!--<td style="background: {{ stock.color }}"/>-->
+                                            <td> {{ stock.color }} </td>
+                                            <td> {{ stock.size }} </td>
+                                            <td> {{ stock.quantity }} </td>
+                                            <td> {{ stock.price }} </td>
+                                            {% if request.user.is_superuser %}
+                                            <td> {{ stock.cost }} </td>
+                                            {% endif %}
+                                        </tr>
+                                        {% endfor %}
+                                    </table>
+                                </div>
+                            </div>
+						</div>
+					</section>
+
+                <!-- Edit Stock -->
+					<section id="editStock" class="two">
+						<div class="container">
+
+							<header>
+								<h2>Edit Stock</h2>
+							</header>
+							
+							</br>
+
+							<!--<form method="post" action="#">-->
+								<div class="row">
+									
+                                    <input id="editStockId" type="text" hidden> 
+									<div class="3u 12u$(mobile)"><label>Item No:</label></div>
+									<div class="3u 12u$(mobile)"><input id="editStockItemNo" type="text" name="itemNo"/></div>
+                                    <div class="3u 12u$(mobile)"><label>In Store Quantities:</label></div>
+									<div class="3u$ 12u$(mobile)"><input id="editStockQty" type="text" name="qty" style="background:#FFFAFF;" readonly/></div>
+									<div class="3u 12u$(mobile)"><label>Description:</label></div>
+									<div class="3u 12u$(mobile)"><input id="editStockDesc" type="text" name="description"/></div>
+                                    
+                                    <div class="3u 12u$(mobile)"><label>Qty (Packed, Refill):</label></div>
+									<div class="3u$ 12u$(mobile)"><input id="updateStockQty" onkeypress="return event.charCode >= 48" type="number" min="0" name="qty" /></div>
+
+									<div class="3u 12u$(mobile)"><label>Color:</label></div>
+									<!--<div class="3u 12u$(mobile)"><input id="editStockColor" type="color" name="color" style="height:40px; width:93%"></div>-->
+                                     <div class="3u 12u$(mobile)"><input id="editStockColor" type="text" name="color" style="height:40px; width:93%"></div>
+                                     
+                                    <!--
+                                    Sell function only available at client side
+                                    <div class="2u 12u$(mobile)">
+										<input id="sellStockBtn" type="submit" value="  Sell  "/>
+									</div>
+                                    -->
+                                    
+                                    <div class="3u 12u$(mobile)">
+										<input id="packStockBtn" type="submit" value=" Packed "/>
+									</div>
+
+                                    <div class="3u$ 12u$(mobile)">
+										<input id="refillStockBtn" type="submit" value="Refill"/>
+									</div>
+
+                                    <div class="3u 12u$(mobile)"><label>Size:</label></div>
+									<div class="3u$ 12u$(mobile)">
+										<select id="editStockSize" name="size" style="width:93%;">
+											<option value="NIL" selected>NIL</option>
+											<option value="XL">XL</option>
+											<option value="L">L</option>
+											<option value="M">M</option>
+											<option value="S">S</option>
+											<option value="XS">XS</option>
+										</select>
+									</div>
+									<div class="3u 12u$(mobile)"><label>Type:</label></div>
+									<div class="3u$ 12u$(mobile)">
+										<select id="editStockType" name="type" style="width:93%;">
+											<option value="TOPS" selected>Tops</option>
+											<option value="TROUSERS">Trousers</option>
+											<option value="DRESSES">Dresses</option>
+											<option value="SKIRTS">Skirts</option>
+											<option value="OUTERWEAR">Outerwear</option>
+											<option value="ACCERSSORIES">Accerssories</option>
+										</select>
+									</div>
+                                    
+                                    {% if request.user.is_superuser %}
+									<div class="3u 12u$(mobile)"><label>Price & Cost:</label></div>
+                                    <div class="3u$ 12u$(mobile)"><input id="editStockPrice" onkeypress="return event.charCode >= 48" type="number" min="0" name="price" placeholder="$Price"/></div>
+                                    <div class="9u$ 12u$(mobile)"><input id="editStockCost" onkeypress="return event.charCode >= 48" type="number" min="0" name="cost" placeholder="$Cost"/></div>
+									{% else %}
+                                    <div class="3u 12u$(mobile)"><label>Price:</label></div>
+                                    <div class="3u$ 12u$(mobile)"><input id="editStockStaffPrice" onkeypress="return event.charCode >= 48" type="number" min="0" name="price" placeholder="$Price"/></div>
+                                    {% endif %}
+                                    
+									<div class="3u$ 12u$(mobile)">
+										<input id="editStockBtn" type="submit" value="Edit"/>
+									</div>
+                                    
+								</div>
+							
+						</div>
+					</section>
+                
+				<!-- In Store Order Hist -->
+					<section id="inStoreOrderHist" class="four">
+						<div class="container">
+
+							<header>
+								<h2>In Store Order Hist</h2>
+							</header>
+							
+							</br>
+							
+                            <div class="row" height="500px">
+                                <div class="2u 12u$(mobile)"><label>Phone No:</label></div>
+                                <div class="3u 12u$(mobile)">
+                                    <input id="checkPhoneNo" type="text" placeholder="Phone No" />
+                                </div>
+                                <div class="2u 12u$(mobile)"><label>Order No:</label></div>
+                                <div class="3u 12u$(mobile)">
+                                    <input id="checkOrderNo" type="text" placeholder="Order No" />
+                                </div>
+                                <div class="2u$ 12u$(mobile)">
+                                    <input id="checkInStoreOrderHistBtn" type="submit" value="Check" />
+                                </div>                                
+                                
+                                <div id="inStoreOrderTableDiv" class="12u$ 12u$(mobile)" style="height: 500px; overflow-x:auto; overflow-y: scroll;">
+                                    <table id="inStoreOrderTable">
+                                        <tr>
+                                            <th>Order No</th>
+                                            <th>Status</th>
+                                            <th>Phone No</th>
+                                            <th>Email</th>
+                                            <th>Item No</th>
+                                            <th>Description</th>                                          
+                                            <th>Color</th>
+                                            <th>Size</th>
+                                            <th>Qty*</th>
+                                            <th>Price</th>
+                                            <!--<th>Action</th>-->
+                                            <!--<th>Test</th>-->
+                                        </tr>
+                                        {% for key, items in inStoreOrderHistResult.iteritems %}
+                                            <tr>
+                                                {% for item in items %}
+                                                    {% if forloop.counter == 1 %}
+                                                    <td id="orderNo"> {{ key }} </td>
+                                                    {% else %}
+                                                    <td></td>
+                                                    {% endif %}
+                                                    <td> {{ item.display_status }} </td>
+                                                    <td id="telNo"> {{ item.inStoreOrderHist.tel_no }} </td>
+                                                    <td id="email"> {{ item.inStoreOrderHist.email }} </td>
+                                                    <td> {{ item.stock.item_no }} </td>
+                                                    <td> {{ item.stock.description }} </td>
+                                                    <!--<td style="background: {{ item.stock.color }}"/>-->
+                                                    <td> {{ item.stock.color }} </td>
+                                                    <td> {{ item.stock.size }} </td>
+                                                    <td> {{ item.quantity }} </td>
+                                                    <td> {{ item.total_price }} </td>
+                                                    <!--
+                                                    {% if forloop.counter == 1 %}
+                                                    <td> <input id="sendInvoiceBtn" type="submit" value="Send" /> </td>
+                                                    {% else %}
+                                                    <td></td>
+                                                    {% endif %}
+                                                    -->
+                                                    <!--<td> <input id="genInvoiceStockBtn" type="submit" value="Invoic"/> </td>-->
+                                                </tr>
+                                                {% endfor %}
+                                            </tr>
+                                        {% endfor %}
+                                    </table>
+                                </div>
+                            </div>
+						</div>
+					</section>
+
+				<!-- Report Service -->
+                    {% if request.user.is_superuser %}
+					<section id="reportService" class="five">
+						<div class="container">
+
+							<header>
+								<h2>Report Service</h2>
+							</header>
+							
+							</br>
+							
+                            <div class="row">
+                                
+                                <div class="3u 12u$(mobile)"><input id="reportFromDate" type="date" name="rptFromDate" placeholder="From (MM/dd/yyyy)" /></div>
+                                <div class="3u 12u$(mobile)"><input id="reportToDate" type="date" name="rptToDate" placeholder="To (MM/dd/yyyy)" /></div>
+                                <div class="3u$ 12u$(mobile)">
+                                    <input id="calcStockBtn" type="submit" value="Calculate" />
+                                </div>
+                                <div class="3u 12u$(mobile)"><label>Current Stock Value:</label></div>
+                                <div class="3u$ 12u$(mobile)"><input disabled id="rptStockValue" type="text" name="currentStockValue" disaled placeholder="$" title="total stock cost which does not bounded by date"/></div>
+                                
+                                <div class="3u 12u$(mobile)"><label>Total Sales:</label></div>
+                                <div class="3u$ 12u$(mobile)"><input disabled id="rptSales" type="text" name="totalSales" disaled placeholder="$" title="total sales in between from to date"/></div>
+                                
+                                <div class="3u 12u$(mobile)"><label>Total Cost:</label></div>
+                                <div class="3u$ 12u$(mobile)"><input disabled id="rptCost" type="text" name="totalCost" disaled placeholder="$" title="total cost in between from to date"/></div>
+                                
+                                <div class="3u 12u$(mobile)"><label>Total Profit:</label></div>
+                                <div class="3u$ 12u$(mobile)"><input disabled id="rptProfit" type="text" name="totalProfit" disaled placeholder="$" title="total profit in between from to date"/></div>
+                                
+                                <div class="3u 12u$(mobile)"><input id="getOrderHistFromDate" type="date" name="getOrderHistFromDate" placeholder="From (MM/dd/yyyy)" /></div>
+                                <div class="3u 12u$(mobile)"><input id="getOrderHistToDate" type="date" name="getOrderHistToDate" placeholder="To (MM/dd/yyyy)" /></div>
+                                <div class="3u$ 12u$(mobile)">
+                                    <a href="{% url 'genOrderHistExcel' %}">Export</a>
+                                    <!-- <input id="genOrderHistStockBtn" type="submit" value="Generate Order History" /> -->
+                                </div>
+                            </div>
+						</div>
+					</section>
+                    {% endif %}
+
+			</div>
+
+		<!-- Footer -->
+			<div id="footer">
+
+				<!-- Copyright -->
+					<ul class="copyright">
+						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 'assets/js/jquery.scrolly.min.js' %}"></script>
+			<script src="{% static 'assets/js/jquery.scrollzer.min.js' %}"></script>
+			<script src="{% static 'assets/js/skel.min.js' %}"></script>
+			<script src="{% static 'assets/js/util.js' %}"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="{% static 'assets/js/main.js' %}"></script>
+			<script src="{% static 'assets/js/external.js' %}"></script>
+			<script src="{% static 'assets/js/btnAction.js' %}"></script>
+            <script src="{% static 'assets/js/stockTableTdClick.js' %}"></script>
+	</body>
+</html>

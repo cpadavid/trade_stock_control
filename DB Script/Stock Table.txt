@@ -1,0 +1,19 @@
+SELECT stock_id, item_no, description, stock_type, color, size, quantity, cost, price FROM stock.stock as s
+
+left join stock.stock_price as sp on sp.stock_stock_id = s.stock_id
+
+left join stock.stock_quantity as sq on sq.stock_stock_id = s.stock_id;
+
+
+Add records into database
+INSERT INTO `stock`.`tradeStockControlApp_instoreorderhist` (`instore_order_id`, `tel_no`, `email`, `last_modified_time`, `last_modified_by`) VALUES ('1', '93293229', 'davidleungszechun@gmail.com', '2018-02-19', 'David');
+
+# Add Records
+INSERT INTO `stock`.`tradestockcontrolapp_instoreorderhist` (`instore_order_id`, `tel_no`, `email`, `last_modified_time`, `last_modified_by`) VALUES ('1', '93293229', 'davidleungszechun@gmail.com', '2018-02-20', 'David');
+INSERT INTO `stock`.`tradestockcontrolapp_instoreorderhist` (`instore_order_id`, `tel_no`, `email`, `last_modified_time`, `last_modified_by`) VALUES ('2', '67617021', 'shinmanli2017@gmail.com', '2018-02-20', 'Angel Li');
+
+INSERT INTO `stock`.`tradestockcontrolapp_instoreorderstock` (`id`, `quantity`, `inStoreOrderHist_id`, `stock_id`) VALUES ('1', '5', '1', '1');
+INSERT INTO `stock`.`tradestockcontrolapp_instoreorderstock` (`id`, `quantity`, `inStoreOrderHist_id`, `stock_id`) VALUES ('2', '10', '1', '2');
+INSERT INTO `stock`.`tradestockcontrolapp_instoreorderstock` (`id`, `quantity`, `inStoreOrderHist_id`, `stock_id`) VALUES ('3', '5', '2', '1');
+INSERT INTO `stock`.`tradestockcontrolapp_instoreorderstock` (`id`, `quantity`, `inStoreOrderHist_id`, `stock_id`) VALUES ('4', '10', '2', '2');
+

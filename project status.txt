@@ -1,0 +1,35 @@
+Questions:
+1.  Where to update Pre-order to Ordered in system ?  
+
+Total Comment List:
+    1. Edit Invoice Format
+OK  2. Admin Different
+OK  3. Edit Stock -> Quantities -> InStore Quantity
+OK  4. Colour -> pick color difficulties -> type colour
+OK  5. email-sent -> invoice preview -> send
+OK  6. Invoice Edit -> Discount, Remark
+    7. Invoice NIL cleanup column
+    8. print qrcode stock
+OK  9. separate order status, instore order, preorder
+OK  10. + remarks field
+OK  11. + generate excel
+
+Pending item:
+    1. Edit Invoice Format    
+    7. Invoice NIL cleanup column
+    8. print qrcode stock
+    
+Bug:
+OK  1. Refill, 2 pop up
+OK  2. QR code cannot input chinese title
+
+20180309
+Total Comment List:
+    1. Add void order function
+    2. Login API for apps
+
+Bug:
+OK  1. Edit Stock Fail, Color
+OK  2. Cannot Send Email
+    3. Invoic, Change to times new roma
+    4. Generate Excel Fail

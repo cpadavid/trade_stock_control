@@ -1,0 +1,5 @@
+sudo /usr/local/mysql/support-files/mysql.server stop
+
+
+
+https://stackoverflow.com/questions/30692812/mysql-user-db-does-not-have-password-columns-installing-mysql-on-osx
